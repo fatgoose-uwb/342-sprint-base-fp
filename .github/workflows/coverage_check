@@ -1,0 +1,10 @@
+#!/bin/bash
+
+coverage_out=/tmp/342_coverage_check.out
+
+coverage_out=`make coverage_check -j4`
+
+summary=`grep -A 2 "Overall coverage rate:" <<< $coverage_out`
+
+./validate_coverage.py "$summary" 50 50 
+
